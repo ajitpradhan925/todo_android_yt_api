@@ -35,6 +35,8 @@ router.post('/register', async (req, res, next) => {
                 success: false,
                 msg: 'User alreay exists'
             });
+
+            return;
         }
         
         let user = new User();
