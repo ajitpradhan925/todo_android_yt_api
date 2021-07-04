@@ -6,7 +6,7 @@ const morgan = require('morgan')
 
 const app = express();
 
-
+// https://todoappyt.herokuapp.com/api/todo/auth/register
 app.use(morgan('dev'));
 
 app.use(express.json({}));
