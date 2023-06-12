@@ -48,7 +48,7 @@ router.post('/register', async (req, res, next) => {
 
         let size = 200;
         user.avatar = "https://gravatar.com/avatar/?s="+size+'&d=retro';
-
+        user.is_online = "0";
 
         await user.save();
 
@@ -81,7 +81,25 @@ router.post('/register', async (req, res, next) => {
     }
 });
 
+router.post('/getAllUsers', async(req, res, next) => {
 
+    console.log(req.body);
+    const {_id} = req.body;
+   // {_id : {$ne : _id}}
+    try {
+        console.log(_id);
+
+        const user = await User.find({_id : {$ne : _id}});
+
+        if(!user) {
+            return res.status(400).json({ success: false, msg: 'Something error happened'});
+        }
+
+        res.status(200).json({ success: true, count: user.length, users: user, msg: 'Successfully fetched'})
+    } catch (error) {
+        next(error);
+    }
+});
 
 
 router.post('/login', async(req, res, next) => {

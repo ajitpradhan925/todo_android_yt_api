@@ -16,7 +16,13 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+
+    is_online: {
+        type: String,
+        required: true
     }
+
 });
 
 
